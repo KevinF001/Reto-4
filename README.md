@@ -1,6 +1,6 @@
 # Reto-4
 # Ejercicio de clase
-Para el ejercicio de clase construi la figura geometrica creando cordenadas con la clase punto y calculando la distancia entre estas de manera ordenada, despues simplemente utilize formulas matematicas como el teorema del coseno, la formula de heron o la formula de la distancia dados dos puntos; con el fin de calcular las diferentes cosas, lo más dificil fue lograr cubrir todos los imprevistos que pudieran surgir y dar entradas comodas con instrucciones claras.
+Para el ejercicio de clase, construí la figura geométrica creando coordenadas con la clase punto y calculando la distancia entre estas de manera ordenada. Después, simplemente utilicé fórmulas matemáticas como el teorema del coseno, la fórmula de Herón o la fórmula de la distancia dados dos puntos, con el fin de calcular las diferentes cosas. Lo más difícil fue lograr cubrir todos los imprevistos que pudieran surgir y dar entradas cómodas con instrucciones claras.
 
 ```Python
 import math
@@ -220,7 +220,62 @@ while True:
       raise ValueError("Opción no válida")
 ```
 # Restaurante 2.0
-Para este ejercicio añadí el encapsulamineto con seters y geters desde la clase Menu, depues agrege el metodo de pago y actualize la forma de hacer descuentos. 
+Para este ejercicio, añadí el encapsulamiento con setters y getters desde la clase Menú. Después, agregué el método de pago y actualicé la forma de hacer descuentos.
+# Diagrama UML:
+``` mermaid
+classDiagram
+
+    class Menu{
+        + nombre: str
+        + nrecio: float
+        + get_nombre()
+        + get_precio()
+        + set_nombre()
+        + set_precio()
+    }
+    class Plato{
+        + Momento: str
+
+    }    
+    class Bebida{
+        + complementos: str
+
+    }
+    class Postre{
+        + Sabor: str
+
+    }
+    class Orden{
+        + Orden: int(list)
+        + Nombres_de_platos: str(list)
+        + Calcular_pedidos()
+        + Aplicar_descuentos()
+    }
+    class MedioPago{
+        + costo: float
+        + pagar()
+
+    }
+    class Tarjeta{
+        + costo: float
+        + cvv: int
+        + número: int
+        + pagar()
+    }
+    class Efectivo{
+        + monto_entregado: float
+        + pagar()
+    }
+
+    Menu *-- Orden
+    Postre --|>  Menu
+    Plato --|>  Menu 
+    Bebida --|> Menu
+    Orden --* MedioPago
+    MedioPago <|-- Efectivo
+    MedioPago <|-- Tarjeta
+```
+# Codigo:
 ```Python
 class Menu:
 
