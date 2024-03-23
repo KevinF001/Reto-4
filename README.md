@@ -264,6 +264,7 @@ classDiagram
     }
     class Efectivo{
         + monto_entregado: float
+        + costo: float
         + pagar()
     }
 
