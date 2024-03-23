@@ -7,20 +7,20 @@ import math
 
 class Point:
     def __init__(self, x, y):
-        self.x = x
-        self.y = y
+        self._x = x
+        self._y = y
 
-    def coordinates(self):
-        return self.x, self.y    # Retorna dos puntos que componen una cordenada.
+    def get_coordinates(self):
+        return self._x, self._y    # Retorna dos puntos que componen una cordenada.
 
 class Line:
     def __init__(self, initial_point, final_point):
-        self.initial_point = initial_point
-        self.final_point = final_point
+        self._initial_point = initial_point
+        self._final_point = final_point
 
     def length(self):
-        x1, y1 = self.initial_point.coordinates() # Con la composición de Point y el metodo coordinates() crear una cordenada inicial y otra final.
-        x2, y2 = self.final_point.coordinates()
+        x1, y1 = self._initial_point.get_coordinates() # Con la composición de Point y el metodo coordinates() crear una cordenada inicial y otra final.
+        x2, y2 = self._final_point.get_coordinates()
         return math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2) # Calcula la distancia entre a cordenada incial y final.
 
 class Shape:
@@ -33,14 +33,14 @@ class Shape:
             for n in range(1, 5): # Si son 4 se ejecuta 4 veces un bucle que permite ingresar una cordenada por cada iteración y para esto se aplica una composición de la clase punto con el metodo coordinates(). 
                 c = ([float(coordinate) for coordinate in input(f"Ingrese la cordenada {n}: ").split(',')]) # n simboliza la cordenada actual.
                 punto = Point(c[0], c[1])
-                x_nu, y_nu = punto.coordinates()
+                x_nu, y_nu = punto.get_coordinates()
                 self.vertices.append((x_nu, y_nu)) # Tras crearse la cordenada se guarda en la lista.
         elif x == 3:
             self.vertices = []
             for n in range(1, 4): # Si son 3 hace exactamnete lo mismo solo que una vez menos.
                 c = ([float(coordinate) for coordinate in input(f"Ingrese la cordenada {n}: ").split(',')])
                 punto = Point(c[0], c[1])
-                x_nu, y_nu = punto.coordinates()
+                x_nu, y_nu = punto.get_coordinates()
                 self.vertices.append((x_nu, y_nu))
 
     def get_vertices(self):
@@ -134,7 +134,7 @@ class RectangleTriangle(Triangle):
 
 fo = Shape() # Instanciazión de la clase Shape()
 
-print("   -Bienvenido- \n El siguiente programa permite analizar algunos tipos de tetaedros y triangulos, dadas sus cordenadas en el plano. Por favor ingrese datos coherentes :) \n")
+print("   -Bienvenido- \n El siguiente programa permite analizar cuadrados, rectangulos y triangulos a partir de sus vertices, por favor ingrese datos coherentes. \n")
 while True:
     x = int(input("Ingrese la cantidad de cordenadas de su figura (vertices), si desea salir selecione 1: \n ")) # Entrada principal
     if x == 4:
